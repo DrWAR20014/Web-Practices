@@ -1,0 +1,24 @@
+.navbox{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.navbox img{
+    align-self: center;
+}
+
+.nav_menu ul{
+    list-style: none;
+    display: flex;
+    padding-left: 400px;
+}
+.nav_menu{
+    display: flex;
+    justify-content: flex-end;
+}
+.navbox ul li{
+    padding: 15px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
