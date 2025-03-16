@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmark Manager</title>
+    <style>
+        body {
+            background-color: rgb(255, 205, 112);
+        }
+        h1 {
+            display: flex;
+            justify-content: center;
+            color: brown;
+            font-family: 'Lucida Sans', sans-serif;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        input {
+            padding: 5px 12px;
+            background-color: antiquewhite;
+            border-radius: 12px;
+            border: 1px solid rgb(243, 180, 65);
+            color: rgb(91, 56, 32);
+        }
+        button {
+            border-radius: 5px 15px 5px;
+            border: 0px;
+            background-color: blanchedalmond;
+            color: rgb(251, 174, 57);
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: orange;
+            color: rgb(176, 116, 38);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            width: 50%;
+        }
+        li {
+            background: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgb(243, 180, 65);
+        }
+        a {
+            color: brown;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .delete {
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .delete:hover {
+            background: darkred;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bookmark Store</h1>
+    <form id="bookmarkForm">
+        <input type="text" id="link" name="link" placeholder="https://example.com" required>
+        <button type="button" id="addButton">Add</button>
+    </form>
+    <ul id="bookmarkList"></ul>
+
+    <script>
+        // Get references to elements
+        const bookmarkForm = document.getElementById("bookmarkForm");
+        const linkInput = document.getElementById("link");
+        const addButton = document.getElementById("addButton");
+        const bookmarkList = document.getElementById("bookmarkList");
+
+        // Event listener for the Add button
+        addButton.addEventListener("click", addBookmark);
+
+        function addBookmark() {
+            const url = linkInput.value.trim(); // Get URL from input
+            if (url) {
+                // Create a list item
+                const li = document.createElement("li");
+
+                // Add a clickable link
+                const anchor = document.createElement("a");
+                anchor.href = url;
+                anchor.textContent = url;
+                anchor.target = "_blank"; // Open in a new tab
+                li.appendChild(anchor);
+
+                // Add a delete button
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete";
+                deleteButton.classList.add("delete");
+                deleteButton.addEventListener("click", () => {
+                    bookmarkList.removeChild(li);
+                });
+                li.appendChild(deleteButton);
+
+                // Append the list item to the bookmark list
+                bookmarkList.appendChild(li);
+
+                // Clear input field
+                linkInput.value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>
