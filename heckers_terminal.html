@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Simulator</title>
+    <style>
+        body {
+            background-color: black;
+            color: rgb(19, 211, 19);
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .message {
+            text-align: center;
+        }
+
+        .dots {
+            display: inline-block;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="message" id="terminal"></div>
+    <script>
+        async function hackingSimulator() {
+            const terminal = document.getElementById('terminal');
+            const messages = [
+                "Initializing Hacking",
+                "Reading your files",
+                "Password files detected",
+                "Sending all passwords and personal files to server",
+                "Cleaning up"
+            ];
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            for (const message of messages) {
+                // Display message with blinking dots
+                terminal.innerHTML = `${message}<span class="dots">...</span>`;
+                await new Promise(resolve => setTimeout(resolve, getRandomInt(1000, 7000)));
+            }
+
+            // Clear the terminal after the final message
+            terminal.innerHTML = "Hacking Complete!";
+        }
+
+        hackingSimulator();
+    </script>
+</body>
+
+</html>
